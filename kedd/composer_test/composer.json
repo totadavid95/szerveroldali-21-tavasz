@@ -1,0 +1,13 @@
+{
+    "name": "totadavid95/composer_test",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Tota Dávid",
+            "email": "totadavid95@gmail.com"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.13"
+    }
+}

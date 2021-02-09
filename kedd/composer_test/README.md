@@ -1,0 +1,2 @@
+- Telepítés: `composer install`
+- Futtatás: `php test.php`
