@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controllers
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
+
+/*
+Route::get('/new-category', function () {
+    return view('new-category');
+})->name('new-category');
+*/
+
+Route::get('/new-category', [CategoryController::class, 'showNewCategoryForm'])->name('new-category');
+Route::post('/store-category', [CategoryController::class, 'storeNewCategory'])->name('store-category');
