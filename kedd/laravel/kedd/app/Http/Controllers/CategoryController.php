@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function newCategoryFormIndex() {
-        return view('new-category');
+        $possible_styles = ['primary','secondary','success','danger','warning','info','dark','light'];
+        return view('new-category', compact('possible_styles'));
     }
 
     public function store(Request $request) {
@@ -15,7 +16,7 @@ class CategoryController extends Controller
             // Validation rules
             [
                 'name' => 'required|min:3|max:20',
-                'style' => 'required'
+                'style' => 'required|in:primary,secondary,success,danger,warning,info,dark,light'
             ],
             // Custom messages
             [
@@ -28,5 +29,7 @@ class CategoryController extends Controller
 
         $console_out = new \Symfony\Component\Console\Output\ConsoleOutput();
         $console_out->writeln("Validated: " . json_encode($validated));
+
+
     }
 }
