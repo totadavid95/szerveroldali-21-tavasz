@@ -7,7 +7,18 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function showNewCategoryForm() {
-        return view('new-category');
+        $styles = [
+            'primary',
+            'secondary',
+            'success',
+            'danger',
+            'warning',
+            'info',
+            'light',
+            'dark',
+        ];
+
+        return view('new-category', compact('styles'));
     }
 
     public function storeNewCategory(Request $request) {
@@ -15,7 +26,7 @@ class CategoryController extends Controller
             // Validation rules
             [
                 'name' => 'required|min:3',
-                'style' => 'required',
+                'style' => 'required|in:primary,secondary,success,danger,warning,info,light,dark',
             ],
             // Custom messages
             [
@@ -24,6 +35,9 @@ class CategoryController extends Controller
                 'required' => 'A(z) :attribute mezőt meg kell adni.',
             ]
         );
+
+        $console = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $console->writeln("Validated: " . json_encode($validated));
 
         // ...
     }

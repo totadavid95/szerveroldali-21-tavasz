@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,6 @@ Route::get('/new-category', function () {
 
 Route::get('/new-category', [CategoryController::class, 'showNewCategoryForm'])->name('new-category');
 Route::post('/store-category', [CategoryController::class, 'storeNewCategory'])->name('store-category');
+
+Route::get('/new-post', [PostController::class, 'showNewPostForm'])->name('new-post');
+Route::post('/store-post', [PostController::class, 'storeNewPost'])->name('store-post');
