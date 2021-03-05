@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $validated = $request->validate(
             // Validation rules
             [
-                'name' => 'required|min:3',
+                'name' => 'required|min:3|max:20',
                 'style' => 'required|in:primary,secondary,success,danger,warning,info,light,dark',
             ],
             // Custom messages
