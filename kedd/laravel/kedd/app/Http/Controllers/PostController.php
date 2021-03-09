@@ -42,5 +42,6 @@ class PostController extends Controller
 
         $console_out->writeln("Post validated: " . json_encode($validated));
 
+
     }
 }
