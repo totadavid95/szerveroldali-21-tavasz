@@ -15,7 +15,7 @@ class PostController extends Controller
         $validated = $request->validate(
             // Validation rules
             [
-                'title' => 'required|min:3',
+                'title' => 'required|min:3|max:144',
                 'text' => 'required|min:3',
                 'disable-comments' => 'nullable|boolean',
                 'hide-post' => 'nullable|boolean',
