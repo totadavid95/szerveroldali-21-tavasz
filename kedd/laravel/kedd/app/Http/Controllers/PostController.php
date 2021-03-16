@@ -2,16 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
-use Storage;
 
 class PostController extends Controller
 {
-    public function newPostFormIndex() {
-        return view('new-post');
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $posts = Post::all();
+        return view('posts.index', ['posts' => $posts]);
     }
 
-    public function store(Request $request) {
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $categories = Category::all();
+        return view('posts.create', compact('categories'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $validated = $request->validate(
             // Validation rules
             [
@@ -29,8 +55,6 @@ class PostController extends Controller
             ]
         );
 
-        $console_out = new \Symfony\Component\Console\Output\ConsoleOutput();
-
         if ($request->hasFile('attachment')) {
             $file = $request->file('attachment');
             $file_name = $file->getClientOriginalName();
@@ -40,8 +64,51 @@ class PostController extends Controller
             Storage::disk('public')->put('attachments/' . $hash_name, $file->get());
         }
 
-        $console_out->writeln("Post validated: " . json_encode($validated));
 
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Post $post)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Post $post)
+    {
+        //
     }
 }

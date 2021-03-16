@@ -17,12 +17,22 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('home');
-})->name('home');
+})->name('home');*/
 
-Route::get('/new-category', [CategoryController::class, 'newCategoryFormIndex'])->name('new-category');
-Route::post('/store-category', [CategoryController::class, 'store'])->name('store-category');
+Route::get('/', function () {
+    return redirect()->route('posts.index');
+});
 
-Route::get('/new-post', [PostController::class, 'newPostFormIndex'])->name('new-post');
-Route::post('/store-post', [PostController::class, 'store'])->name('store-post');
+Route::resource('categories', CategoryController::class)->only([
+    'create', 'store', 'edit', 'update',
+]);
+
+Route::resource('posts', PostController::class);
+
+//Route::get('/new-category', [CategoryController::class, 'newCategoryFormIndex'])->name('new-category');
+//Route::post('/store-category', [CategoryController::class, 'store'])->name('store-category');
+
+//Route::get('/new-post', [PostController::class, 'newPostFormIndex'])->name('new-post');
+//Route::post('/store-post', [PostController::class, 'store'])->name('store-post');
