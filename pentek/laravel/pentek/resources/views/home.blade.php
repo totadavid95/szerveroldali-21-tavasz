@@ -12,7 +12,7 @@
             <div class="py-md-3 text-md-right">
                 <p class="my-1">Elérhető műveletek:</p>
                 <a href="{{ route('new-post') }}" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i> Új bejegyzés</a>
-                <a href="{{ route('new-category') }}" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i> Új kategória</a>
+                <a href="{{ route('categories.create') }}" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i> Új kategória</a>
             </div>
         </div>
     </div>
