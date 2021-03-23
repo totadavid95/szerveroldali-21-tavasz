@@ -10,7 +10,7 @@
             <div class="d-flex my-1 text-secondary">
                 <span class="mr-2">
                     <i class="fas fa-user"></i>
-                    <span>{{ $post->author->name }}</span>
+                    <span>{{ $post->author ? $post->author->name : 'Nincs szerző' }}</span>
                 </span>
                 <span class="mr-2">
                     <i class="far fa-calendar-alt"></i>
@@ -43,7 +43,7 @@
         @if ($post->attachment_hash_name !== null)
             <div class="attachment mb-3">
                 <h5>Csatolmány</h5>
-                <a href="#">csatolmany.pdf</a>
+                <a href="{{ route('posts.attachment', ['id' => $post->id]) }}">{{ $post->attachment_original_name }}</a>
             </div>
         @endif
 

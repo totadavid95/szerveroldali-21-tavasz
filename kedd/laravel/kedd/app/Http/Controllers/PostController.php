@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Storage;
 
 class PostController extends Controller
 {
@@ -43,8 +44,10 @@ class PostController extends Controller
             [
                 'title' => 'required|min:3|max:144',
                 'text' => 'required|min:3',
-                'disable-comments' => 'nullable|boolean',
-                'hide-post' => 'nullable|boolean',
+                'categories' => 'nullable',
+                'categories.*' => 'integer|distinct|exists:categories,id',
+                'disable_comments' => 'nullable|boolean',
+                'hide_post' => 'nullable|boolean',
                 'attachment' => 'nullable|file|mimes:txt,pdf,png,jpg|max:4096',
             ],
             // Custom messages
@@ -57,14 +60,29 @@ class PostController extends Controller
 
         if ($request->hasFile('attachment')) {
             $file = $request->file('attachment');
-            $file_name = $file->getClientOriginalName();
+            $validated['attachment_original_name'] = $file->getClientOriginalName();
             //$console_out->writeln($file_name);
-            $hash_name = $file->hashName();
+            $validated['attachment_hash_name'] = $file->hashName();
             //$console_out->writeln($hash_name);
-            Storage::disk('public')->put('attachments/' . $hash_name, $file->get());
+            Storage::disk('public')->put('attachments/' . $validated['attachment_hash_name'], $file->get());
         }
 
+        $post = Post::create($validated);
 
+        $post->categories()->attach($request->categories);
+
+        $request->session()->flash('post-created', $post->title);
+        return redirect()->route('posts.create');
+
+    }
+
+    public function attachment($id) {
+        $post = Post::find($id);
+        if (!$post) return abort(404);
+
+        if (!$post->attachment_hash_name || !$post->attachment_original_name) return abort(404);
+
+        return Storage::disk('public')->download('attachments/' . $post->attachment_hash_name, $post->attachment_original_name);
     }
 
     /**

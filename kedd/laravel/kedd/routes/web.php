@@ -29,6 +29,7 @@ Route::resource('categories', CategoryController::class)->only([
     'create', 'store', 'edit', 'update',
 ]);
 
+Route::get('posts/{id}/attachment', [PostController::class, 'attachment'])->name('posts.attachment');
 Route::resource('posts', PostController::class);
 
 //Route::get('/new-category', [CategoryController::class, 'newCategoryFormIndex'])->name('new-category');

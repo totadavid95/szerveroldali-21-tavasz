@@ -9,6 +9,12 @@
         <a href="{{ route('posts.index') }}"><i class="fas fa-long-arrow-alt-left"></i> Vissza a bejegyzésekhez</a>
     </div>
 
+    @if (Session::has('post-created'))
+        <div class="alert alert-success" role="alert">
+            A(z) <strong>{{ Session::get('post-created') }}</strong> című bejegyzés sikeresen létre lett hozva!
+        </div>
+    @endif
+
     <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group row">
@@ -68,12 +74,12 @@
             <div class="col-sm-10">
                 <div class="form-group">
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" value="1" id="disable-comments" name="disable-comments" {{ old('disable-comments') ? 'checked' : '' }}>
-                        <label for="disable-comments" class="form-check-label">Hozzászólások tiltása</label>
+                        <input type="checkbox" class="form-check-input" value="1" id="disable_comments" name="disable_comments" {{ old('disable_comments') ? 'checked' : '' }}>
+                        <label for="disable_comments" class="form-check-label">Hozzászólások tiltása</label>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" value="1" id="hide-post" name="hide-post" {{ old('hide-post') ? 'checked' : '' }}>
-                        <label for="hide-post" class="form-check-label">Bejegyzés elrejtése</label>
+                        <input type="checkbox" class="form-check-input" value="1" id="hide_post" name="hide_post" {{ old('hide_post') ? 'checked' : '' }}>
+                        <label for="hide_post" class="form-check-label">Bejegyzés elrejtése</label>
                     </div>
                 </div>
             </div>

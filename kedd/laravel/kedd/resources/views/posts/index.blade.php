@@ -29,7 +29,7 @@
                                     <small class="text-secondary">
                                         <span class="mr-2">
                                             <i class="fas fa-user"></i>
-                                            <span>{{ $post->author->name }}</span>
+                                            <span>{{ $post->author ? $post->author->name : 'Nincs szerző' }}</span>
                                         </span>
                                         <span class="mr-2">
                                             <i class="far fa-calendar-alt"></i>
