@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'text', 'disable_comments', 'hide_post', 'attachment_hash_name', 'attachment_original_name'];
+    protected $fillable = ['title', 'text', 'author_id', 'disable_comments', 'hide_post', 'attachment_hash_name', 'attachment_original_name'];
 
     public function author() {
         return $this->belongsTo(User::class, 'author_id');

@@ -9,6 +9,11 @@ class CategoryController extends Controller
 {
     const styles = ['primary','secondary','success','danger','warning','info','dark','light'];
 
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store', 'edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *

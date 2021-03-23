@@ -25,6 +25,10 @@ Route::get('/', function () {
     return redirect()->route('posts.index');
 });
 
+Route::get('/home', function () {
+    return redirect()->route('posts.index');
+});
+
 Route::resource('categories', CategoryController::class)->only([
     'create', 'store', 'edit', 'update',
 ]);
@@ -37,3 +41,7 @@ Route::resource('posts', PostController::class);
 
 //Route::get('/new-post', [PostController::class, 'newPostFormIndex'])->name('new-post');
 //Route::post('/store-post', [PostController::class, 'store'])->name('store-post');
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

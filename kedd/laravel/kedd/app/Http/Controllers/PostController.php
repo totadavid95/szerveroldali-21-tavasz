@@ -6,9 +6,16 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Storage;
+use Auth;
+use Gate;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store', 'edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(6);
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -67,6 +74,8 @@ class PostController extends Controller
             Storage::disk('public')->put('attachments/' . $validated['attachment_hash_name'], $file->get());
         }
 
+        $validated['author_id'] = Auth::id();
+
         $post = Post::create($validated);
 
         $post->categories()->attach($request->categories);
@@ -104,7 +113,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        //if (Gate::denies('update-post', $post)) {
+        if (Auth::user()->cannot('update', $post)) {
+            return abort(403);
+        }
     }
 
     /**

@@ -1,7 +1,7 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('title', $post->title)
 
-@section('main-content')
+@section('content')
 <div class="container">
     <div class="row justify-content-between">
         <div class="col-12 col-md-8">
@@ -31,7 +31,9 @@
         <div class="col-12 col-md-4">
             <div class="py-md-3 text-md-right">
                 <p class="my-1">Bejegyzés kezelése:</p>
-                <a href="{{ route('posts.edit', $post) }}" role="button" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> Módosítás</a>
+                @can('update', $post)
+                    <a href="{{ route('posts.edit', $post) }}" role="button" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> Módosítás</a>
+                @endcan
                 <button type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i> Törlés</button>
             </div>
         </div>

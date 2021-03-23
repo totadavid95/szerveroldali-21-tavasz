@@ -1,7 +1,7 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('title', 'Bejegyzések')
 
-@section('main-content')
+@section('content')
 <div class="container">
     <div class="row justify-content-between">
         <div class="col-12 col-md-8">
@@ -9,11 +9,13 @@
             <h3 class="mb-1">Minden bejegyzés</h3>
         </div>
         <div class="col-12 col-md-4">
-            <div class="py-md-3 text-md-right">
-                <p class="my-1">Elérhető műveletek:</p>
-                <a href="{{ route('posts.create') }}" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i> Új bejegyzés</a>
-                <a href="{{ route('categories.create') }}" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i> Új kategória</a>
-            </div>
+            @auth
+                <div class="py-md-3 text-md-right">
+                    <p class="my-1">Elérhető műveletek:</p>
+                    <a href="{{ route('posts.create') }}" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i> Új bejegyzés</a>
+                    <a href="{{ route('categories.create') }}" role="button" class="btn btn-sm btn-success mb-1"><i class="fas fa-plus-circle"></i> Új kategória</a>
+                </div>
+            @endauth
         </div>
     </div>
 
@@ -22,7 +24,7 @@
             <div class="row">
                 @forelse ($posts as $post)
                     <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex align-items-strech">
-                        <div class="card">
+                        <div class="card w-100">
                             <div class="card-body">
                                 <div class="mb-2">
                                     <h5 class="card-title mb-0">{{ $post->title }}</h5>
@@ -48,6 +50,12 @@
                 @endforelse
             </div>
 
+            <div class="w-100 d-flex justify-content-center">
+                {{ $posts->links() }}
+            </div>
+
+
+            <!--
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item disabled">
@@ -61,6 +69,7 @@
                     </li>
                 </ul>
             </nav>
+            -->
 
         </div>
         <div class="col-12 col-lg-3">

@@ -8,7 +8,7 @@
         @if (View::hasSection('title'))
             @yield('title')
         @else
-            Laravel Alkalmazás
+            Blog
         @endif
     </title>
 
