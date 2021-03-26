@@ -22,7 +22,7 @@
             <div class="row">
                 @forelse ($posts as $post)
                     <div class="col-12 col-md-6 col-lg-4 mb-3 d-flex align-items-strech">
-                        <div class="card">
+                        <div class="card w-100">
                             <div class="card-body">
                                 <div class="mb-2">
                                     <h5 class="card-title mb-0">{{ $post->title }}</h5>

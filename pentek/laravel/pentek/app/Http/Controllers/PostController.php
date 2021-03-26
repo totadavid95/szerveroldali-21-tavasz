@@ -78,6 +78,18 @@ class PostController extends Controller
         return redirect()->route('posts.create');
     }
 
+    public function attachment($id) {
+        $post = Post::find($id);
+        if (!$post) return abort(404);
+
+        if (!$post->attachment_hash_name || !$post->attachment_original_name) return abort(404);
+
+        return Storage::disk('public')->download(
+            'attachments/' . $post->attachment_hash_name,   // disk-en hol van a fájlom
+            $post->attachment_original_name,                // milyen néven töltse le
+        );
+    }
+
     /**
      * Display the specified resource.
      *

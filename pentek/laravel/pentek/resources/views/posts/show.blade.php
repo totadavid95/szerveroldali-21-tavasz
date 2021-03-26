@@ -51,7 +51,7 @@
         @if ($post->attachment_hash_name !== null)
             <div class="attachment mb-3">
                 <h5>Csatolmány</h5>
-                <a href="#">{{ $post->attachment_original_name }}</a>
+                <a href="{{ route('posts.attachment', ['id' => $post->id]) }}">{{ $post->attachment_original_name }}</a>
             </div>
         @endif
 

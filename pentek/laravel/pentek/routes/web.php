@@ -45,4 +45,6 @@ Route::get('/new-post', [PostController::class, 'showNewPostForm'])->name('new-p
 Route::post('/store-post', [PostController::class, 'storeNewPost'])->name('store-post');
 */
 
+Route::get('/posts/{id}/attachment', [PostController::class, 'attachment'])->name('posts.attachment');
+
 Route::resource('posts', PostController::class);
