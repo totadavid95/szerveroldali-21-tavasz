@@ -1,8 +1,8 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('title', 'Kategória szerkesztése: '.$category->name)
 
-@section('main-content')
+@section('content')
 <div class="container">
     <h1>Kategória szerkesztése</h1>
     <p class="mb-1">Ezen az oldalon tudsz kategóriát szerkeszteni. A bejegyzéseket úgy tudod hozzárendelni, ha a

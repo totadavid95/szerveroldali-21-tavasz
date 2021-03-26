@@ -1,8 +1,8 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('title', 'Új kategória')
 
-@section('main-content')
+@section('content')
 <div class="container">
     <h1>Új kategória</h1>
     <p class="mb-1">Ezen az oldalon tudsz új kategóriát létrehozni. A bejegyzéseket úgy tudod hozzárendelni, ha a

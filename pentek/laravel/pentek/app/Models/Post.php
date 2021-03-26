@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'text', 'disable_comments', 'hide_post', 'attachment_hash_name', 'attachment_original_name',
+        'title', 'text', 'disable_comments', 'hide_post', 'attachment_hash_name', 'attachment_original_name', 'author_id',
     ];
 
     public function author() {

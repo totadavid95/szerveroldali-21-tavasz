@@ -6,9 +6,14 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Storage;
+use Auth;
 
 class PostController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'delete']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        //$posts = Post::all();
+        $posts = Post::paginate(6);
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -69,6 +75,8 @@ class PostController extends Controller
             $data['attachment_hash_name'] = $hashName;
             $data['attachment_original_name'] = $originalName;
         }
+
+        $data['author_id'] = Auth::id();
 
         $post = Post::create($data);
 

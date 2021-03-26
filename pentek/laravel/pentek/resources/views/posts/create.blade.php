@@ -1,8 +1,8 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('title', 'Új bejegyzés')
 
-@section('main-content')
+@section('content')
 <div class="container">
     <h1>Új bejegyzés</h1>
     <p class="mb-1">Ezen az oldalon tudsz új bejegyzést létrehozni.</p>
@@ -52,14 +52,14 @@
                                         type="checkbox"
                                         class="form-check-input"
                                         value="{{ $category->id }}"
-                                        id="category{{ $loop->iteration }}"
+                                        id="category{{ $category->id }}"
                                         name="categories[]"
                                         @if (is_array(old('categories')) && in_array($category->id, old('categories')))
                                             checked
                                         @endif
                                     >
                                     <label
-                                        for="category{{ $loop->iteration }}"
+                                        for="category{{ $category->id }}"
                                         class="form-check-label"
                                     >
                                         <span class="badge badge-{{ $category->style }}">

@@ -1,8 +1,8 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('title', $post->title)
 
-@section('main-content')
+@section('content')
 <div class="container">
     <div class="row justify-content-between">
         <div class="col-12 col-md-8">
@@ -37,11 +37,19 @@
             </div>
         </div>
         <div class="col-12 col-md-4">
-            <div class="py-md-3 text-md-right">
-                <p class="my-1">Bejegyzés kezelése:</p>
-                <a href="{{ route('posts.edit', $post) }}" role="button" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> Módosítás</a>
-                <button type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i> Törlés</button>
-            </div>
+            @auth
+                @if (Gate::allows('manage-post', $post))
+                    <div class="py-md-3 text-md-right">
+                        <p class="my-1">Bejegyzés kezelése:</p>
+                        @can('update', $post)
+                            <a href="{{ route('posts.edit', $post) }}" role="button" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> Módosítás</a>
+                        @endcan
+                        @can('delete', $post)
+                            <button type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i> Törlés</button>
+                        @endcan
+                    </div>
+                @endif
+            @endauth
         </div>
     </div>
 

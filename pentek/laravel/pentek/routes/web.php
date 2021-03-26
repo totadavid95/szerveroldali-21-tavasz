@@ -48,3 +48,7 @@ Route::post('/store-post', [PostController::class, 'storeNewPost'])->name('store
 Route::get('/posts/{id}/attachment', [PostController::class, 'attachment'])->name('posts.attachment');
 
 Route::resource('posts', PostController::class);
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

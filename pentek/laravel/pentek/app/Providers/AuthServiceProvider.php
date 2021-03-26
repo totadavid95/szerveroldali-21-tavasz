@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('manage-post', function ($user, $post) {
+            return $user->is($post->author);
+            //return $user->id === $post->user_id;
+        });
     }
 }
