@@ -1,0 +1,17 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-and-time": "^1.0.0",
+    "faker": "^5.5.3",
+    "jimp": "^0.16.1",
+    "sqlite3": "^5.0.2"
+  }
+}
