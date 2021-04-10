@@ -195,7 +195,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - **a#all-books-ref**
         - *Könyv adatai*
           - Könyv címe: **#book-title** azonosító
-          - Könyv műfajai: **#book-categories** azonosító
+          - Könyv műfajai: **#book-genres** azonosító
             - Ezen a div-en belül pedig legyenek különböző **a** tag-ek (Bootstrap esetén lehet pl. *badge*), amelyek az adott műfajra mutatnak.
           - Szerzők: **#book-authors**
           - Kiadás dátuma: **#book-date**
@@ -488,6 +488,7 @@ Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a 
 #### 2021. április 10.
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
   - Könyv frissítésénél (book-update) ne #book-name, hanem #book-title jelenjen meg
+  - A könyv adatlapján a könyv műfajainak a szülőeleme nem #book-categories, hanem #book-genres
 
 #### 2021. április 06.
   - A műfaj stílusánál lemaradt a *dark*
