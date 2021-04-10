@@ -365,7 +365,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
       - A kapott adatok alapján módosítsa a könyvet az adatbázisban
       - Ha sikerült a könyv módosítása, akkor irányítson vissza a könyvet szerkesztő formra, és jelenítsen meg egy üzenetet, hogy a könyvet sikerült módosítani
         - Az üzenet div-jének id-je ez legyen: **#book-updated**
-        - Az üzenetben jelenjen meg a könyv neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#book-name**
+        - Az üzenetben jelenjen meg a könyv neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#book-title**
     - Műfaj megjelenítése (**genres/{genre}**)
       - Ez a végpont szolgál arra, hogy megjelenítse a műfajhoz tartozó könyveket
       - Szinte ugyanaz, mint a **/books** oldal, annyi különbséggel, hogy csak a megadott műfajhoz listázza a könyveket. A különbségek:
@@ -487,6 +487,7 @@ Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a 
 
 #### 2021. április 10.
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
+  - Könyv frissítésénél (book-update) ne #book-name, hanem #book-title jelenjen meg
 
 #### 2021. április 06.
   - A műfaj stílusánál lemaradt a *dark*
