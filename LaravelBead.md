@@ -284,7 +284,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - muszáj megadni
             - legalább 1
         - ISBN:
-          - input mező neve: **pages**
+          - input mező neve: **isbn**
           - input mező típusa: text
           - validációs szabályok:
             - muszáj megadni
@@ -484,6 +484,9 @@ Az alábbiakban adunk néhány hasznos hivatkozást, amiket érdemes szemügyre 
 
 ## Változásnapló
 Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a pontban egyértelműen, tételesen jelezzük.
+
+#### 2021. április 10.
+  - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
 
 #### 2021. április 06.
   - A műfaj stílusánál lemaradt a *dark*
