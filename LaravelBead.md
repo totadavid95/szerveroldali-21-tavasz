@@ -378,7 +378,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - Ebben legyen két gomb: *Módosítás* és *Törlés*
             - A gombok azonosítója a következő legyen: 
               - **#edit-genre-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**genres/{genre}/edit**)
-              - **#delete-genre-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **genres/{book}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
+              - **#delete-genre-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **genres/{genre}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
 
 ## 2. felvonás
 - Hamarosan
@@ -492,6 +492,7 @@ Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a 
   - Könyv frissítésénél (book-update) ne #book-name, hanem #book-title jelenjen meg
   - A könyv adatlapján a könyv műfajainak a szülőeleme nem #book-categories, hanem #book-genres
   - edit útvonalak javítása
+  - genre törlésénél nem book, hanem genre kell
 
 #### 2021. április 06.
   - A műfaj stílusánál lemaradt a *dark*
