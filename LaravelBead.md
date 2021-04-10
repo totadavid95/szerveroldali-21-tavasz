@@ -20,6 +20,9 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
   - [A munka tisztasága](#a-munka-tisztasága)
   - [Hasznos hivatkozások](#hasznos-hivatkozások)
   - [Változásnapló](#változásnapló)
+      - [2021. április 10.](#2021-április-10)
+      - [2021. április 06.](#2021-április-06)
+      - [2021. március 19.](#2021-március-19)
 
 ## Modellek
 - Az alábbi modelleket kell létrehozni a megadott mezőkkel és tulajdonságokkal.
@@ -376,7 +379,6 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - A gombok azonosítója a következő legyen: 
               - **#edit-genre-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**genres/edit/{genre}**)
               - **#delete-genre-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **genres/{book}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
-      
 
 ## 2. felvonás
 - Hamarosan
@@ -483,7 +485,7 @@ Az alábbiakban adunk néhány hasznos hivatkozást, amiket érdemes szemügyre 
   - [Bulma](https://bulma.io/)
 
 ## Változásnapló
-Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a pontban egyértelműen, tételesen jelezzük.
+Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a pontban egyértelműen, tételesen jelezzük. Minden egyes változás külön commit-ként kerül fel a repo-ba, a beadandó feladatsorára vonatkozó commit history pedig [ide kattintva érhető el](https://github.com/totadavid95/szerveroldali-21-tavasz/commits/main/LaravelBead.md).
 
 #### 2021. április 10.
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
