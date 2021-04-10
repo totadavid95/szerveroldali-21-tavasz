@@ -212,7 +212,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
           - Legyen egy szülő div-je, aminek az id-je **#book-actions**
             - Ebben legyen két gomb: *Módosítás* és *Törlés*
             - A gombok azonosítója a következő legyen: 
-              - **#edit-book-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**books/edit/{book}**)
+              - **#edit-book-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**books/{book}/edit**)
               - **#delete-book-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **books/{book}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
     - Új műfaj létrehozása (**genres/create**)
       - Ezen az oldalon lehet új műfajt létrehozni (űrlap megjelenítés)
@@ -239,7 +239,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
       - Ha sikerült a műfaj létrehozása, akkor irányítson vissza a műfajt létrehozó formra, és jelenítsen meg egy üzenetet, hogy a műfajt sikerült létrehozni
         - Az üzenet div-jének id-je ez legyen: **#genre-created**
         - Az üzenetben jelenjen meg a műfaj neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#genre-name**
-    - Műfaj módosítása (**genres/edit/{genre}**)
+    - Műfaj módosítása (**genres/{genre}/edit**)
       - Ezen az oldalon lehet egy műfajt szerkeszteni (szerkesztő űrlap megjelenítés)
       - Legyen egy hivatkozás, ami visszavisz a könyvek listájához
         - **a#all-books-ref**
@@ -346,7 +346,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
       - Ha sikerült a könyv létrehozása, akkor irányítson vissza a könyvet létrehozó formra, és jelenítsen meg egy üzenetet, hogy a könyvet sikerült létrehozni
         - Az üzenet div-jének id-je ez legyen: **#book-created**
         - Az üzenetben jelenjen meg a könyv címe is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#book-title**
-    - Könyv módosítása (**books/edit/{book}**)
+    - Könyv módosítása (**books/{book}/edit**)
       - Ezen az oldalon lehet egy könyvet szerkeszteni (szerkesztő űrlap megjelenítés)
       - Legyen egy hivatkozás, ami visszavisz a könyvek listájához
         - **a#all-books-ref**
@@ -377,7 +377,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
           - Legyen egy szülő div-je, aminek az id-je **#genre-actions**
             - Ebben legyen két gomb: *Módosítás* és *Törlés*
             - A gombok azonosítója a következő legyen: 
-              - **#edit-genre-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**genres/edit/{genre}**)
+              - **#edit-genre-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**genres/{genre}/edit**)
               - **#delete-genre-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **genres/{book}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
 
 ## 2. felvonás
@@ -491,6 +491,7 @@ Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a 
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
   - Könyv frissítésénél (book-update) ne #book-name, hanem #book-title jelenjen meg
   - A könyv adatlapján a könyv műfajainak a szülőeleme nem #book-categories, hanem #book-genres
+  - edit útvonalak javítása
 
 #### 2021. április 06.
   - A műfaj stílusánál lemaradt a *dark*
