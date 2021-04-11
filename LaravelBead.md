@@ -165,8 +165,8 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
     - Miután elkészültél a modellekkel, és rendelkeznek a kért mezőkkel, valamint a kapcsolatokat is létrehoztad, utána érdemes az adatmodellekhez tartozó metódusokat is megcsinálni, és azokat is tesztelni. Így a felhasználói felület fejlesztésének úgy állhatsz neki, hogy az alkalmazásodnak már van egy stabil adatbázisa.
   - Felhasználói felület elkészítése:
     - *Tipp: hozz létre [Resource controller-eket](https://laravel.com/docs/8.x/controllers#resource-controllers) a műfajhoz és a könyvekhez!*
-    - A következő route-ok: **/** és **/home**, irányítsanak át erre az útvonalra: **books.index**, ez lesz a főoldal
-    - Főoldal (**/books**)
+    - A következő route-ok: **GET /** és **GET /home**, irányítsanak át erre az útvonalra: **books.index**, ez lesz a főoldal
+    - Főoldal (**GET /books**)
       - *Könyvek megjelenítése*
         - A könyvek egy olyan szülő div-ben legyenek, aminek az id mezője **#books**
         - Az a div, ami a könyvet tartalmazza, legyen ellátva egy **.book** stílusosztállyal.
@@ -176,7 +176,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
         - A könyvhöz legyen hozzárendelve egy gomb, ami az adott könyv adatlapját nyitja meg, ehhez egy olyan gombot/hivatkozást rendelj hozzá, ami a **.book-details** stílusosztállyal rendelkezik.
         - A könyvek oldalanként jelenjenek meg úgy, hogy egy oldalon 9 könyv legyen, ehhez lásd: [Pagination](https://laravel.com/docs/8.x/pagination)
           - Az oldalak közti lapozás így jelenik meg az URL-ben:
-            - **/books?page={oldalszám}**
+            - **GET /books?page={oldalszám}**
       - *Műveletek megjelenítése*
         - Jeleníts meg két gombot: *Új műfaj* és *Új könyvek*
           - A gombok azonosítója a következő legyen: **#create-genre-btn**, **#create-book-btn**
@@ -191,7 +191,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
         - Jelenítsd meg az elérhető műfajokat hivatkozható forumában a következő módon:
           - Az a szülő div, amelyben a műfajok vannak, ezzel a stílusosztállyal rendelkezzen: **.genres-list**
           - Ezen a div-en belül pedig legyenek különböző **a** tag-ek (Bootstrap esetén lehet pl. *badge*), amelyek az adott műfajra mutatnak.
-    - Könyv adatlapja (**books/{book}**)
+    - Könyv adatlapja (**GET /books/{book}**)
       - Ez az oldal egy könyv adatlapját mutatja meg, ami megjeleníti a könnyvel kapcsolatos főbb adatokat.
       - Az oldal így épüljön fel:
         - *Hivatkozás a könyvekhez*
@@ -213,18 +213,18 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
           - Legyen egy szülő div-je, aminek az id-je **#book-actions**
             - Ebben legyen két gomb: *Módosítás* és *Törlés*
             - A gombok azonosítója a következő legyen: 
-              - **#edit-book-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**books/{book}/edit**)
-              - **#delete-book-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **books/{book}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
-    - Könyv törlése (**DELETE books/{book}**)
+              - **#edit-book-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**GET /books/{book}/edit**)
+              - **#delete-book-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **DELETE /books/{book}** legyen.
+    - Könyv törlése (**DELETE /books/{book}**)
       - Törölje a paraméterben kapott könyvet.
-      - A törlést követően irányítson át a könyvek oldalra (**GET books**), ahol jelenítsen meg egy üzenetet, hogy sikerült a törlés. 
+      - A törlést követően irányítson át a könyvek oldalra (**GET /books**), ahol jelenítsen meg egy üzenetet, hogy sikerült a törlés. 
         - Az üzenet div-jének az id-je ez legyen: **#book-deleted**
         - Az üzenetben jelenjen meg a könyv neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#book-name**
-    - Új műfaj létrehozása (**genres/create**)
+    - Új műfaj létrehozása (**GET /genres/create**)
       - Ezen az oldalon lehet új műfajt létrehozni (űrlap megjelenítés)
       - Legyen egy hivatkozás, ami visszavisz a könyvek listájához
         - **a#all-books-ref**
-      - Az űrlap POST metódussal legyen elküldve ide: **genres/store**
+      - Az űrlap POST metódussal legyen elküldve ide: **POST /genres/store**
       - Az űrlap mezői:
         - Műfaj neve:
           - input mező neve: **name**
@@ -238,32 +238,32 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - muszáj megadni
             - ezeket az értékeket veheti fel: *primary, secondary, success, danger, warning, info, light, dark*
         - A form legyen állapottartó, tehát ha elküldjük, és a validatoron nem megy át, akkor az előző értékeket jegyezze meg!
-    - Új műfaj eltárolása (**genres/store**)
+    - Új műfaj eltárolása (**POST /genres/store**)
       - Erre a végpontra küldjük el a műfajt létrehozó formot
       - Végezze el a műfajra megadott validációs szabályokat
       - A kapott adatok alapján tárolja el a műfajt az adatbázisban
       - Ha sikerült a műfaj létrehozása, akkor irányítson vissza a műfajt létrehozó formra, és jelenítsen meg egy üzenetet, hogy a műfajt sikerült létrehozni
         - Az üzenet div-jének id-je ez legyen: **#genre-created**
         - Az üzenetben jelenjen meg a műfaj neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#genre-name**
-    - Műfaj módosítása (**genres/{genre}/edit**)
+    - Műfaj módosítása (**GET /genres/{genre}/edit**)
       - Ezen az oldalon lehet egy műfajt szerkeszteni (szerkesztő űrlap megjelenítés)
       - Legyen egy hivatkozás, ami visszavisz a könyvek listájához
         - **a#all-books-ref**
-      - Az űrlap PATCH metódussal legyen elküldve ide: **genres/update**
+      - Az űrlap PATCH metódussal legyen elküldve ide: **PATCH /genres/update**
       - Az űrlap elemei megegyeznek a létrehozással
       - A form jelenítse meg az aktuális műfaj adatait, ezen felül legyen állapottartó, tehát ha elküldjük, és a validatoron nem megy át, akkor az előző értékeket jegyezze meg, ahol pedig ilyen nem volt, oda a default értékeket írja!
-    - Műfaj módosításainak eltárolása (**genres/update**)
+    - Műfaj módosításainak eltárolása (**PATCH /genres/update**)
       - Erre a végpontra küldjük el a műfajt frissítő formot
       - Végezze el a műfajra megadott validációs szabályokat
       - A kapott adatok alapján módosítsa a műfajt az adatbázisban
       - Ha sikerült a műfaj módosítása, akkor irányítson vissza a műfajt szerkesztő formra, és jelenítsen meg egy üzenetet, hogy a műfajt sikerült módosítani
         - Az üzenet div-jének id-je ez legyen: **#genre-updated**
         - Az üzenetben jelenjen meg a műfaj neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#genre-name**
-    - Új könyv létrehozása (**books/create**)
+    - Új könyv létrehozása (**GET /books/create**)
       - Ezen az oldalon lehet új műfajt létrehozni (űrlap megjelenítés)
       - Legyen egy hivatkozás, ami visszavisz a könyvek listájához
         - **a#all-books-ref**
-      - Az űrlap POST metódussal legyen elküldve ide: **books/store**
+      - Az űrlap POST metódussal legyen elküldve ide: **POST /books/store**
       - Az űrlap mezői:
         - Könyv címe:
           - input mező neve: **title**
@@ -329,7 +329,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - legalább 0
             - legfeljebb 3000
         - A form legyen állapottartó, tehát ha elküldjük, és a validatoron nem megy át, akkor az előző értékeket jegyezze meg (a fájlnál ezt nem kell megtenni)!
-    - Új könyv eltárolása (**books/store**)
+    - Új könyv eltárolása (**POST /books/store**)
       - Erre a végpontra küldjük el a könyvet létrehozó formot
       - A fentebb megadott validációs szabályokat végezze el
       - Ha volt megadva borítókép, akkor azt tároljuk el a **public** mappába, és mentsük el a *book cover_image* mezőjébe azt a fájlnevet, amivel elmentettük
@@ -352,11 +352,11 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
       - Ha sikerült a könyv létrehozása, akkor irányítson vissza a könyvet létrehozó formra, és jelenítsen meg egy üzenetet, hogy a könyvet sikerült létrehozni
         - Az üzenet div-jének id-je ez legyen: **#book-created**
         - Az üzenetben jelenjen meg a könyv címe is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#book-title**
-    - Könyv módosítása (**books/{book}/edit**)
+    - Könyv módosítása (**GET /books/{book}/edit**)
       - Ezen az oldalon lehet egy könyvet szerkeszteni (szerkesztő űrlap megjelenítés)
       - Legyen egy hivatkozás, ami visszavisz a könyvek listájához
         - **a#all-books-ref**
-      - Az űrlap PATCH metódussal legyen elküldve ide: **books/update**
+      - Az űrlap PATCH metódussal legyen elküldve ide: **PATCH /books/update**
       - Az űrlap elemei megegyeznek a létrehozással, leszámítva az alábbiakat:
         - A borítókép alatt jelenítsük meg a jelenlegi borítóképet, az alábbi id-vel:
           - **img#book-cover-preview**
@@ -373,26 +373,26 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
         - Annak az esetnek nincs értelme, ha a felhasználó feltölt egy borítóképet, de közben bepipálja a *"Borítókép eltávolítása"* lehetőséget is, hiszen ezek ellentétes utasítások. Éppen ezért úgy kell megvalósítani a módosítást, hogyha a felhasználó ezt a két lehetőséget egyszerre használja, az hibát eredményezzen, méghozzá az **attachment** mező esetében!
           - *Tipp:* Használhatod a [prohibited-unless](https://laravel.com/docs/8.x/validation#rule-prohibited-unless) validációs szabályt.
       - A form jelenítse meg az aktuális könyv adatait, ezen felül legyen állapottartó, tehát ha elküldjük, és a validatoron nem megy át, akkor az előző értékeket jegyezze meg, ahol pedig ilyen nem volt, oda a default értékeket írja! A fájlfeltöltés esetében nem kell megjegyezni az előző értéket.
-    - Könyv módosításainak eltárolása (**books/update**)
+    - Könyv módosításainak eltárolása (**PATCH /books/update**)
       - Erre a végpontra küldjük el a könyvet frissítő formot
       - Végezze el a módosításra megadott validációs szabályokat
       - A kapott adatok alapján módosítsa a könyvet az adatbázisban
       - Ha sikerült a könyv módosítása, akkor irányítson vissza a könyvet szerkesztő formra, és jelenítsen meg egy üzenetet, hogy a könyvet sikerült módosítani
         - Az üzenet div-jének id-je ez legyen: **#book-updated**
         - Az üzenetben jelenjen meg a könyv neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#book-title**
-    - Műfaj megjelenítése (**genres/{genre}**)
+    - Műfaj megjelenítése (**GET /genres/{genre}**)
       - Ez a végpont szolgál arra, hogy megjelenítse a műfajhoz tartozó könyveket
-      - Szinte ugyanaz, mint a **/books** oldal, annyi különbséggel, hogy csak a megadott műfajhoz listázza a könyveket. A különbségek:
+      - Szinte ugyanaz, mint a **GET /books** oldal, annyi különbséggel, hogy csak a megadott műfajhoz listázza a könyveket. A különbségek:
         - Az oldal tetején jelenjen meg a műfaj neve egy **span** tag-ben, amelynek az id-je a következő: **#genre**
         - Jelenjenek meg a műfajjal kapcsolatos műveletek:
           - Legyen egy szülő div-je, aminek az id-je **#genre-actions**
             - Ebben legyen két gomb: *Módosítás* és *Törlés*
             - A gombok azonosítója a következő legyen: 
-              - **#edit-genre-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**genres/{genre}/edit**)
-              - **#delete-genre-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **genres/{genre}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
+              - **#edit-genre-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**GET /genres/{genre}/edit**)
+              - **#delete-genre-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **DELETE /genres/{genre}** legyen.
     - Műfaj törlése (**DELETE genres/{genre}**)
       - Törölje a paraméterben kapott műfajt.
-      - A törlést követően irányítson át a könyvek oldalra (**GET books**), ahol jelenítsen meg egy üzenetet, hogy sikerült a törlés. 
+      - A törlést követően irányítson át a könyvek oldalra (**GET /books**), ahol jelenítsen meg egy üzenetet, hogy sikerült a törlés. 
         - Az üzenet div-jének az id-je ez legyen: **#genre-deleted**
         - Az üzenetben jelenjen meg a műfaj neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#genre-name**
 
@@ -506,6 +506,7 @@ Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a 
 #### 2021. április 11.
   - A feladat mostmár konkrétabban határozza meg a borítókép módosítását/eltávolítását.
   - A könyv, ill. a műfaj törlését követően üzenet megjelenítése.
+  - Útvonalak részletesebb kifejtése (ez a feladatot nem befolyásolja).
 
 #### 2021. április 10.
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
