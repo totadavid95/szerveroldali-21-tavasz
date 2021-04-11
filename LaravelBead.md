@@ -20,6 +20,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
   - [A munka tisztasága](#a-munka-tisztasága)
   - [Hasznos hivatkozások](#hasznos-hivatkozások)
   - [Változásnapló](#változásnapló)
+      - [2021. április 11.](#2021-április-11)
       - [2021. április 10.](#2021-április-10)
       - [2021. április 06.](#2021-április-06)
       - [2021. március 19.](#2021-március-19)
@@ -360,8 +361,13 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
           - validációs szabályok:
             - lehet null érték
             - logikai érték
-          - *Tipp:* `Storage::disk('...')->delete(...)`
-      - A form jelenítse meg az aktuális könyv adatait, ezen felül legyen állapottartó, tehát ha elküldjük, és a validatoron nem megy át, akkor az előző értékeket jegyezze meg, ahol pedig ilyen nem volt, oda a default értékeket írja!
+          - *Tipp:*
+            - A disk-ről a következő módon lehet kitörölni egy fájlt: `Storage::disk('disk neve')->delete('útvonal a fájlhoz')`
+            - A `delete` le tudja kezelni azt is, ha nem létező fájlt adsz át neki
+        - Ha a könyvhöz már be van állítva egyedi borítókép, de a felhasználó feltölt egy újat, akkor az új borítókép sikeres beállítását követően a régi fájl feleslegessé válik, így azt törölni kell a disk-ről!
+        - Annak az esetnek nincs értelme, ha a felhasználó feltölt egy borítóképet, de közben bepipálja a *"Borítókép eltávolítása"* lehetőséget is, hiszen ezek ellentétes utasítások. Éppen ezért úgy kell megvalósítani a módosítást, hogyha a felhasználó ezt a két lehetőséget egyszerre használja, az hibát eredményezzen, méghozzá az **attachment** mező esetében!
+          - *Tipp:* Használhatod a [prohibited-unless](https://laravel.com/docs/8.x/validation#rule-prohibited-unless) validációs szabályt.
+      - A form jelenítse meg az aktuális könyv adatait, ezen felül legyen állapottartó, tehát ha elküldjük, és a validatoron nem megy át, akkor az előző értékeket jegyezze meg, ahol pedig ilyen nem volt, oda a default értékeket írja! A fájlfeltöltés esetében nem kell megjegyezni az előző értéket.
     - Könyv módosításainak eltárolása (**books/update**)
       - Erre a végpontra küldjük el a könyvet frissítő formot
       - Végezze el a módosításra megadott validációs szabályokat
@@ -486,6 +492,9 @@ Az alábbiakban adunk néhány hasznos hivatkozást, amiket érdemes szemügyre 
 
 ## Változásnapló
 Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a pontban egyértelműen, tételesen jelezzük. Minden egyes változás külön commit-ként kerül fel a repo-ba, a beadandó feladatsorára vonatkozó commit history pedig [ide kattintva érhető el](https://github.com/totadavid95/szerveroldali-21-tavasz/commits/main/LaravelBead.md).
+
+#### 2021. április 11.
+  - A feladat mostmár konkrétabban határozza meg a borítókép módosítását/eltávolítását.
 
 #### 2021. április 10.
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
