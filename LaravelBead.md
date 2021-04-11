@@ -133,8 +133,10 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
 
 ## 1. felvonás
 - Időpontok:
-  - **Határidő: 2021. április 11. (vasárnap) 23:59:59** *(A magyar költészet napja)*
-  - Konzultáció: 2021. április 03. (szombat) 14:00, Teams Általános csatorna
+  - **Határidő: 2021. április 18. (vasárnap) 23:59:59**
+  - Konzultációk: 
+    - 2021\. április 03. (szombat) 14:00, Teams Általános csatorna
+    - 2021\. április 16. (péntek) 16:00, Teams Általános csatorna
 - Feladatok:
   - Laravel alkalmazás elkészítése
     - Hozz létre egy új Laravel alkalmazást, amelyben a beadandót fejleszteni fogod. Az alkalmazás verziója *legalább* Laravel 7 kell, hogy legyen, de érdemes a jelenleg elérhető legújabb verziót, a 8-ast használni!
@@ -431,8 +433,11 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
 ## Segítségkérés, konzultációs alkalmak
 - Ha bárkinek bármilyen kérdése van a beadandóval kapcsolatban, pl. elakadt, támpontra van szüksége, kíváncsi, hogy jó-e egy ötlete, nem ért valamit a követelményekből, nem érti a feladat valamelyik pontját, akkor BÁTRAN keresse az oktatókat, de NE tologassa maga előtt a beadandót, hogy "majd lesz valahogy", mivel hamar elszáll az idő! Az elérhetőségek megtalálhatóak a Canvasben, az "Elérhetőség" oldalon.
 - A beadandóhoz az alábbi konzultációs lehetőségeket is biztosítjuk:
-  - április 03. 14:00 (szombat), helyszín: Teams csoport, Általános csatorna
-  - ?? 14:00 (szombat), helyszín: Teams csoport, Általános csatorna
+  - 1\. felvonás:
+    - 2021\. április 03. (szombat) 14:00, helyszín: Teams csoport, Általános csatorna
+    - 2021\. április 16. (péntek) 16:00, helyszín: Teams Általános csatorna
+  - 2\. felvonás:
+    - 2021\. ?? (szombat) 14:00, helyszín: Teams csoport, Általános csatorna
 - Ezek általános konzultációs alkalmak. Mondunk mi is pár általános dolgot, de örülnénk, ha minél többen jönnétek, és Nektek lennének kérdéseitek, amikből a társaitok is okulhatnak!
 
 ## Határidők, késés
@@ -507,6 +512,7 @@ Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a 
   - A feladat mostmár konkrétabban határozza meg a borítókép módosítását/eltávolítását.
   - A könyv, ill. a műfaj törlését követően üzenet megjelenítése.
   - Útvonalak részletesebb kifejtése (ez a feladatot nem befolyásolja).
+  - Határidő meghosszabbítása.
 
 #### 2021. április 10.
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
