@@ -215,6 +215,11 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - A gombok azonosítója a következő legyen: 
               - **#edit-book-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**books/{book}/edit**)
               - **#delete-book-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **books/{book}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
+    - Könyv törlése (**DELETE books/{book}**)
+      - Törölje a paraméterben kapott könyvet.
+      - A törlést követően irányítson át a könyvek oldalra (**GET books**), ahol jelenítsen meg egy üzenetet, hogy sikerült a törlés. 
+        - Az üzenet div-jének az id-je ez legyen: **#book-deleted**
+        - Az üzenetben jelenjen meg a könyv neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#book-name**
     - Új műfaj létrehozása (**genres/create**)
       - Ezen az oldalon lehet új műfajt létrehozni (űrlap megjelenítés)
       - Legyen egy hivatkozás, ami visszavisz a könyvek listájához
@@ -385,6 +390,11 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
             - A gombok azonosítója a következő legyen: 
               - **#edit-genre-btn**: ez egy *a* tag legyen, ami linkként szolgál a szerkesztő formra (**genres/{genre}/edit**)
               - **#delete-genre-btn**: ez egy form része legyen, ami rendelkezzen *csrf* mezővel, és az *action*-je a **genres/{genre}** legyen. A metódus, amivel elküldjük, az pedig **DELETE**.
+    - Műfaj törlése (**DELETE genres/{genre}**)
+      - Törölje a paraméterben kapott műfajt.
+      - A törlést követően irányítson át a könyvek oldalra (**GET books**), ahol jelenítsen meg egy üzenetet, hogy sikerült a törlés. 
+        - Az üzenet div-jének az id-je ez legyen: **#genre-deleted**
+        - Az üzenetben jelenjen meg a műfaj neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#genre-name**
 
 ## 2. felvonás
 - Hamarosan
@@ -495,6 +505,7 @@ Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a 
 
 #### 2021. április 11.
   - A feladat mostmár konkrétabban határozza meg a borítókép módosítását/eltávolítását.
+  - A könyv, ill. a műfaj törlését követően üzenet megjelenítése.
 
 #### 2021. április 10.
   - A könyv létrehozásánál, szerkesztésénél az ISBN input mező neve nem pages, hanem isbn.
