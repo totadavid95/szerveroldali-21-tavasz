@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "faker": "^5.5.3",
+    "jimp": "^0.16.1"
+  }
+}
