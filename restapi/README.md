@@ -20,7 +20,7 @@ npx sequelize seed:generate --name DatabaseSeeder
 
 A GitHub-ról való letöltés után ezekkel a parancsokkal lehet elindítani:
 ```shell
- # Függőségek telepítése:
+# Függőségek telepítése:
 npm install
 # Adatbázis létrehozása, seedelése:
 npm run db
@@ -33,3 +33,4 @@ npm run dev
 - Express 4 api: https://expressjs.com/en/4x/api.html
 - Faker api: http://marak.github.io/faker.js/
 - [jwt.io](https://jwt.io/)
+- [https://firecamp.io/](https://firecamp.io/)
