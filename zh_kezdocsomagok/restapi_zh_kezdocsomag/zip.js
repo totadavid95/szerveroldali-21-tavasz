@@ -27,7 +27,7 @@ checkStatement = async () => {
         "   * Hoppá, úgy néz ki, hogy nem található a statement.txt fájl! Nem baj, letöltjük..."
       )
     );
-    const remoteURL = 'https://raw.githubusercontent.com/totadavid95/szerveroldali-21-tavasz/main/restapi_zh_kezdocsomag/statement.txt';
+    const remoteURL = 'https://raw.githubusercontent.com/totadavid95/szerveroldali-21-tavasz/main/zh_kezdocsomagok/restapi_zh_kezdocsomag/statement.txt';
     const response = await fetch(remoteURL);
     await pPipeline(response.body, fs.createWriteStream("./statement.txt"));
     console.log(
