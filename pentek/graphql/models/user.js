@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         as: "Posts",
         foreignKey: "AuthorId",
       });
+      this.hasMany(models.Comment, {
+        as: "Comments",
+        foreignKey: "AuthorId",
+      });
     }
 
     matchPassword = (password) => SHA256(password).toString() === this.password;

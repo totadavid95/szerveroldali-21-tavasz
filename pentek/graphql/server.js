@@ -6,6 +6,7 @@ const {
   ReasonPhrases,
 } = require("http-status-codes");
 const { UniqueConstraintError } = require("sequelize");
+const jwtMiddleware = require('./middlewares/jwt');
 
 const GraphQL = require('./graphql');
 
@@ -21,7 +22,24 @@ const postRouter = require("./routers/post");
 // Json parsolás működjön a request body-ból
 app.use(express.json());
 
-app.use('/graphql', GraphQL);
+const debugRequest = (req, res, next) => {
+  console.log(req.unauthorized);
+  console.log(req.user);
+  next();
+};
+
+const optionalJwtMiddleware = (req, res, next) => {
+  return jwtMiddleware(req, res, (err) => {
+    if (err) {
+      if (err.name !== 'UnauthorizedError') return next(err);
+      if (err.message === 'invalid_token') req.invalidToken = true;
+      req.unauthorized = true;
+    }
+    return next();
+  })
+}
+
+app.use('/graphql', optionalJwtMiddleware, debugRequest, GraphQL);
 
 // Routerek bind-olása a végpontokhoz
 app.use("/users", userRouter);
