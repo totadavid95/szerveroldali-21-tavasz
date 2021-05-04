@@ -3,7 +3,7 @@
 const faker = require("faker");
 
 const models = require("../models");
-const { User, Category, Post } = models;
+const { User, Category, Post, Comment } = models;
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -54,6 +54,18 @@ module.exports = {
         )
       );
       await post.setAuthor(faker.random.arrayElement(users));
+
+      for (let i = 1; i <= faker.datatype.number({ min: 0, max: 5 }); i++) {
+        /*const comment = await Comment.create({
+          text: faker.lorem.paragraph(),
+          AuthorId: faker.random.arrayElement(users).id,
+          PostId: post.id,
+        });*/
+        await post.createComment({
+          text: faker.lorem.paragraph(),
+          AuthorId: faker.random.arrayElement(users).id,
+        })
+      }
     }
   },
 

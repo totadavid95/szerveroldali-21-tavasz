@@ -7,12 +7,30 @@ const {
 } = require("http-status-codes");
 const { UniqueConstraintError } = require("sequelize");
 const GraphQLHttp = require('./graphql');
+const jwtMiddleware = require('./middlewares/jwt');
 
 // Express app létrehozása
 const app = express();
 
+const testMiddleware = (req, res, next) => {
+  console.log(req.unauthorized);
+  console.log(req.user);
+  next();
+}
+
+const optionalJwtMiddleware = (req, res, next) => {
+  return jwtMiddleware(req, res, (err) => {
+    if (err) {
+      if (err.name !== 'UnauthorizedError') return next(err);
+      if (err.message === 'invalid_token') req.invalidToken = true;
+      req.unauthorized = true;
+    }
+    return next();
+  });
+}
+
 // GraphQL
-app.use('/graphql', GraphQLHttp);
+app.use('/graphql', optionalJwtMiddleware, /*testMiddleware,*/ GraphQLHttp);
 
 // Routerek behúzása
 const userRouter = require("./routers/user");
