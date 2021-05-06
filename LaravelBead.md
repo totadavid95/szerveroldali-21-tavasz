@@ -12,6 +12,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
   - [Metódus ötletek](#metódus-ötletek)
   - [Szerepkörök](#szerepkörök)
   - [1. felvonás](#1-felvonás)
+    - [1. felvonás pontjai:](#1-felvonás-pontjai)
   - [2. felvonás](#2-felvonás)
   - [Követelmények](#követelmények)
   - [Alkotói szabadság](#alkotói-szabadság)
@@ -397,6 +398,13 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
       - A törlést követően irányítson át a könyvek oldalra (**GET /books**), ahol jelenítsen meg egy üzenetet, hogy sikerült a törlés. 
         - Az üzenet div-jének az id-je ez legyen: **#genre-deleted**
         - Az üzenetben jelenjen meg a műfaj neve is, pl. egy span-ben, a lényeg, hogy az id-je ez legyen: **#genre-name**
+
+### 1. felvonás pontjai:
+- Adatbázis & Seeder: 5 pont
+- Felület igényessége: 4 pont
+- Könyv CRUD: 14 pont
+- Műfaj CRUD: 7 pont
+- *CRUD:* **C**reate, **R**ead, **U**pdate, **D**elete
 
 ## 2. felvonás
 - Hamarosan
