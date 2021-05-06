@@ -13,7 +13,8 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
   - [Szerepkörök](#szerepkörök)
   - [1. felvonás](#1-felvonás)
     - [1. felvonás pontjai:](#1-felvonás-pontjai)
-  - [2. felvonás](#2-felvonás)
+  - [2. felvonás (30 pont)](#2-felvonás-30-pont)
+    - [2. felvonás pontjai:](#2-felvonás-pontjai)
   - [Követelmények](#követelmények)
   - [Alkotói szabadság](#alkotói-szabadság)
   - [Segítségkérés, konzultációs alkalmak](#segítségkérés-konzultációs-alkalmak)
@@ -406,8 +407,123 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
 - Műfaj CRUD: 7 pont
 - *CRUD:* **C**reate, **R**ead, **U**pdate, **D**elete
 
-## 2. felvonás
-- Hamarosan
+## 2. felvonás (30 pont)
+- Időpontok:
+  - **Határidő: 2021. május 30. (vasárnap) 23:59:59**
+  - Konzultációk: 
+    - 2021\. május 15. (szombat) 14:00, Teams Általános csatorna
+    - 2021\. május 22. (szombat) 14:00, Teams Általános csatorna
+- Feladatok:
+  - Kereső **(3 pont)**
+    - A főoldalon legyen egy kereső.
+    - A találati oldal lehet olyan, mint a sima könyvlistázó oldal, de csak azok a könyvek jelenjenek meg, amiknek a címében megtalálható a keresett kifejezés. Nincs kis és nagybetű érzékenység, tehát ha egy könyv neve STAR WARS, de stAr-ra keresünk, ugyanúgy be kell adnia találatnak.
+  - Regisztráció és Bejelentkezés oldal **(1 pont)**
+    - A tanultaknak megfelelően legyen implementálva a *Laravel UI* használatával az autentikációs rendszer.
+  - Az aktív menüpontok legyenek ellátva egy *active* vagy valami olyan class-al, ami megkülönbözeti őket a többitől. Tehát ha pl. a Könyvek oldalon vagyunk, akkor a menüben ez legyen félkövér, stb. **(1 pont)**
+  - *Egyértelműen* jelölni kell, hogy Vendég/Olvasói/Könyvtáros felületen vagyunk-e! Pl. változik a menüsor színe, stb. **(1 pont)**
+  - Könyvtáros funkciók: **(14 pont)**
+    - Az alábbi funkciók csak könyvtárosként bejelentkezve legyenek elérhetők.
+    - Első felvonásban készített végpontok levédése:
+      - Csak a könyvtáros tudjon létrehozni, szerkeszteni, törölni műfajokat és könyveket. Ennek érdekében védd le ezeket a végpontokat a megfelelő jogosultságkezeléssel!
+      - A felhasználói felületen illetékteleneknek (olvasóknak, vendégeknek) ne jelenjenek meg a gombok (pl. Új műfaj, Új könyv, stb.), illetve a végpontokhoz se lehessen hozzáférni a felhasználói felület megkerülésével. Ha illetéktelen hozzáférés történik egy végponthoz (pl. valaki megnyitja a /genres/create form-ot, vagy az action url-jére akar postolni), akkor 403-as hibát kell adni.
+      - Könyvtárosok között nem teszünk különbséget, tehát olyan megkötés nincs, hogyha A könyvtáros hozott létre egy műfajt/könyvet, akkor azt csak az A módosíthatja, nyugodtan módosíthatja B könyvtáros is.
+      - Tipp: használj [policy](https://laravel.com/docs/8.x/authorization#writing-policies)-kat, a controller osztályok konstruktorában pedig az [authorizeResource](https://laravel.com/api/8.x/Illuminate/Foundation/Auth/Access/AuthorizesRequests.html#method_authorizeResource) segítségével tudod megmondani, hogy a policy melyik metódus(ok)ra legyen kihatással.
+    - Kölcsönzések kezelése:
+      - Ez az oldal váljon szét a következő kategóriákra:
+        - Függőben lévő kölcsönzések
+        - Elfogadott kölcsönzések
+        - Elutasított kölcsönzések
+        - Visszahozott kölcsönzések
+        - Késésben lévő kölcsönzések
+          - Ezek olyan elfogadott kölcsönzések, amelyeknek már lejárt a határideje, ezek jelenjenek meg az elfogadott rész és ez alatt a rész alatt is.
+        - Egy oldalon max. 15 kölcsönzés jelenhet meg, ezt [Pagination](https://laravel.com/docs/8.x/pagination) használatával kell megoldani!
+        - A kölcsönzések *created_at* szerint növekvő sorrendben jelenjenek meg, tehát a legrégebbi kölcsönzés legyen legfelül, és a legújabb pedig a lista legvégén, a legutolsó oldalon. Tipp: használj *whereDate*-t.
+      - Egy kölcsönzésre kattintva annak adatlapjára jutunk
+      - A kölcsönzés adatlapja így épül fel:
+        - Könyv
+          - A könyv, amit a kölcsönzés érint, innen el kell tudni jutni a könyv adatlapjára
+        - Kölcsönzés adatai:
+          - Olvasó neve, 
+          - Könyv címe, 
+          - Kölcsönzés kérésének ideje, 
+          - Olvasó megjegyzése (ha van), 
+          - Kölcsönzés állapotát szövegként (Függőben, Elutasítva, Elfogadva, Visszahozva)
+          - Ha a kölcsönzés fel lett már dolgozva (tehát nem Függőben van), akkor a feldolgozás adatait *is* meg kell jeleníteni:
+            - Feldolgozás ideje
+            - Feldolgozást végző könyvtáros
+            - Könyvtáros megjegyzése (ha van),
+            - Határidő (ha van)
+          - Ha a könyv már vissza lett juttatva (Visszahozva állapotú), akkor a visszajuttatás adatait *is* meg kell jeleníteni: 
+            - Mikor történt a visszajuttatás
+            - Melyik könyvtáros regisztrálta a visszajuttatást
+        - Opcionális figyelmeztetés
+          - Az adatok alatt figyelmeztessük a könyvtárost, ha a kölcsönzést kérő olvasóhoz tartoznak megkésett kölcsönzések!
+          - Ezt a figyelmeztetést feltételesen kell megjeleníteni, vagyis csak akkor, ha az alábbi feltételek valamelyike teljesül!
+          - A két feltétel, amit kezelni kell:
+            1. Megkésett aktuális kölcsönzések
+              - Olyan Elfogadott állapotú kölcsönzések, amik még a felhasználónál vannak, azonban a határidejük már lejárt.
+            2. Régebbi, késve visszahozott kölcsönzések
+              - Olyan Visszahozott állapotú kölcsönzések, amelyeket már a felhasználó visszajuttatott a könyvtár részére, azonban ezt akkor késve tette meg.
+          - Ezeket a megkésett kölcsönzéseket tegyük hivatkozhatóvá, hogy az adatlapjukra lehessen ugrani egy kattintással, pl. *#{kölcsönzés id-je}* szöveggel
+        - Kezelő űrlap:
+          - Ennek az űrlapnak a segítségével adminisztrálható a kölcsönzés.
+          - Legyen lehetőség az alábbi három állapot közül választani:
+            - Elutasítva 
+            - Elfogadva
+            - Visszahozva
+          - Legyen lehetőség határidőt választani
+            - Bármilyen dátumot lehet választani
+            - Segítség: használhatsz `datetime-local`-t, ilyenkor a date-t így add értékül, hogy elfogadja: `date('Y-m-d\TH:i', strtotime($borrow->deadline))`
+          - Legyen lehetőség egy opcionális megjegyzést írni
+            - Ezzel csak az ACCEPTED/REJECTED esetén kell foglalkozni,
+            - A megjegyzés max. 255 karakter hosszú lehet
+          - Legyen egy mentés gomb, amivel a módosításokat alkalmazni lehet.
+          - A módosítások alkalmazása után a rendszer irányítson vissza a kölcsönzés adatlapjára, és ott jelenítsen meg egy üzenetet, hogy sikerült a módosítás.
+  - Olvasói funkciók **(7 pont)**:
+    - Az olvasói funkció felhasználó felületi elemei, végpontjai a könyvtároshoz hasonlóan legyenek levédve, hogy Vendégek ne tudják használni őket.
+    - Könyv kikölcsönzése:
+      - A könyv adatlapján legyen egy Kölcsönzés feliratú gomb vagy hivatkozás, ami egy Kölcsönzési igényt összeállító űrlapra irányít
+      - Az űrlap oldala így épüljön fel:
+        - Legyen egy hivatkozás, amivel vissza lehet jutni a könyv adatlapjára
+        - Egyértelműen jelezze, melyik könyvre vonatkozik
+        - A könyvhöz jelenjen meg egy készletinformáció, hogy jelenleg elérhető-e a könyv a könyvtárban! 
+          - Ez úgy működik, hogy a könyvnek van egy in_stock mezője, és ebből lejön, hogy éppen hány embernek van kiadva (ACCEPTED kölcsönzés)
+          - Ha a könyv a készletinformáció szerint nem elérhető, attól a kölcsönzési igényt le lehet adni, majd a könyvtárosokon múlik, hogy kezelik le.
+        - Legyen egy megjegyzés mező, ahová opcionálisan lehet a kölcsönzést elbíráló könyvtáros felé üzenni
+        - Ha a felhasználó beküldi a formot, jöjjön létre egy PENDING állapotú kölcsönzés, aminek a reader-je az aktuálisan bejelentkezett felhasználó, legyen hozzárendelve a könyv, megjegyzés (ha van), stb. 
+        - Ezt követően a rendszer irányítsa vissza a felhasználót a könyv adatlapjára, és jelenítsen meg egy üzenetet, hogy sikerült leadni a kölcsönzést.
+        - **Egy felhasználónak egy könyvre egyszerre csak egy kölcsönzése lehet!**
+          - A felhasználó nem adhat le kölcsönzési igényt egy könyvre, ha:
+            - már le van adva neki arra a könyvre egy kölcsönzési igénye, de az nincs elbírálva
+            - vagy van olyan elfogadott kölcsönzése, ami azt a könyvet érinti
+    - Kölcsönzések oldal:
+      - Nagyon hasonlóan a könyvtáros felületéhez, a felhasználónak is legyen egy *Függőben, Elutasított, Elfogadott, Visszahozva, Késés* kategóriákra bontott kölcsönzési oldala, itt azonban csak a saját kölcsönzéseit láthassa!
+      - A kölcsönzések sorrendje itt *created_at* szerint *csökkenő* sorrendben legyen, vagyis a legújabb kölcsönzés legyen legelől mindig!
+      - Ugyanúgy legyen a kölcsönzésnek egy adatlapja, ahol látja a könyvet, és a kölcsönzés adatait.
+      - Ha a felhasználónak van olyan aktuálisan nála levő (Elfogadott) kölcsönzése, amivel késésben van, akkor jelenítsünk meg neki egy figyelmeztetést a kölcsönzések oldal tetején!
+  - Profil oldal **(3 pont)**:
+    - Legyen egy Profil oldal, ami elérhető a menüből, és az alábbi adatokat jelenítse meg:
+      - A felhasználó
+        - szerepkörét (olvasó/könyvtáros)
+        - nevét
+        - email címét
+      - Ha olvasó, akkor jelenítse meg az
+        - összes hozzá köthető kölcsönzés számát,
+        - az összes hozzá köthető aktív kölcsönzés számát (az aktív kölcsönzés az ACCEPTED, ahol nála van épp a könyv)
+        - az aktuális késések számát (vagyis az olyan aktív kölcsönzéseket, aminek a határideje lejárt)
+      - Ha könyvtáros, akkor jelenítse meg az
+        - általa elfogadott kölcsönzések számát
+        - általa elutasított kölcsönzések számát
+        - általa visszahozottnak minősített kölcsönzések számát
+
+### 2. felvonás pontjai:
+- Kereső: 3 pont
+- Regisztráció, bejelentkezés: 1 pont
+- Aktív menüpontok: 1 pont
+- Vendég/Olvasó/Könyvtáros felületek elválnak: 1 pont
+- Könyvtáros funkciók: 14 pont
+- Olvasói funkciók: 7 pont
+- Profil oldal: 3 pont
 
 ## Követelmények
 - Az alkalmazást Laravel 7/8 keretrendszerben kell megvalósítani.
