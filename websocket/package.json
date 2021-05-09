@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "task1": "npx nodemon task1.js",
+    "task2": "npx nodemon task2.js"
+  },
+  "dependencies": {
+    "faker": "^5.5.3",
+    "socket.io": "^4.0.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
