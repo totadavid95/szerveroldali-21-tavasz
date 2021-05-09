@@ -150,4 +150,24 @@ io.on("connection", (socket) => {
   });
 });
 
+// Ez azt csinálja, hogy egy random értékpapír értékét változtatja át random értékekre
+changePrices = () => {
+  // Egy random értékpapír választása a securities kulcsai közül
+  const security = faker.random.arrayElement(Object.keys(securities));
+  // 750 és 1500 között generálunk valami random számot, az lesz a price
+  const price = faker.datatype.number({ min: 750, max: 1500 });
+  // Az új árat be push-oljuk az adott értékpapír prices property-jébe
+  securities[security].prices.push({
+      timestamp: Date.now(), // aktuális időbélyeg
+      price,
+  });
+  // Aki az érintett értékpapír csatornájára fel van iratkozva, megkapja 
+  // ezt a változtatást a price-changed-ben
+  io.to(security).emit('price-changed', { security, price });
+  console.log(securities[security])
+}
+
+// 1 másodpercenként fusson le a changePrices és változtassa meg egy random értékpapír értékét...
+setInterval(changePrices, 1000);
+
 httpServer.listen(3000);
