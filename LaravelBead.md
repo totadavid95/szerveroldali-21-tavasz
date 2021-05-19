@@ -22,6 +22,7 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
   - [A munka tisztasága](#a-munka-tisztasága)
   - [Hasznos hivatkozások](#hasznos-hivatkozások)
   - [Változásnapló](#változásnapló)
+      - [2021. május 19.](#2021-május-19)
       - [2021. április 11.](#2021-április-11)
       - [2021. április 10.](#2021-április-10)
       - [2021. április 06.](#2021-április-06)
@@ -65,6 +66,8 @@ A feladatod az alábbi beadandó feladat megvalósítása. Az elkészült beadan
         - *Melyik olvasóhoz kapcsolódik a kölcsönzés*
     - book_id (unsignedBigInteger, foreign, references:id, on:books)
         - *Melyik könyvhöz kapcsolódik a kölcsönzés*
+    - reader_message (string, 255, nullable)
+      - *Az olvasó megjegyzést tud fűzni a kölcsönzési igényéhez, amelyet a könyvtáros majd látni fog, amikor feldolgozza azt*
     - status (enum: PENDING, ACCEPTED, REJECTED, RETURNED)
         - Mi a kölcsönzés jelenlegi állapota:
             - *PENDING: függőben van (tehát az olvasó kérvényezte, hogy kikölcsönözhesse az adott könyvet)*
@@ -631,6 +634,9 @@ Az alábbiakban adunk néhány hasznos hivatkozást, amiket érdemes szemügyre 
 
 ## Változásnapló
 Ha a beadandó feladatsorában bármilyen változás történik, azokat ebben a pontban egyértelműen, tételesen jelezzük. Minden egyes változás külön commit-ként kerül fel a repo-ba, a beadandó feladatsorára vonatkozó commit history pedig [ide kattintva érhető el](https://github.com/totadavid95/szerveroldali-21-tavasz/commits/main/LaravelBead.md).
+
+#### 2021. május 19.
+  - reader_message mező hozzáadása a Borrow-hoz
 
 #### 2021. április 11.
   - A feladat mostmár konkrétabban határozza meg a borítókép módosítását/eltávolítását.
