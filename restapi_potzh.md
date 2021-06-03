@@ -66,7 +66,7 @@ Készítsd el az alábbi REST API feladatot Node.js, ExpressJS és SQLite3 segí
   - A modellek:
     - Genre
       - id: integer, not null, auto increment, primary key
-      - name: string
+      - name: string, unique
       - createdAt: date
       - updatedAt: date
     - Developer
